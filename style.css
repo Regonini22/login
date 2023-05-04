@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+ @font-face {
+    font-family: 'Poppins';
+    src: url('../Criando-login/fontes/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    
+} 
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('background.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 20px 100px;
+    margin: 0px -1px 40px -1px;
+    /* background: red; */
+    /*TAG DE EMBASAMENTO*/
+    background: transparent;
+    border: 0px solid rgb(255, 255,255, .5);
+    backdrop-filter: blur(20px);/*TAG DE EMBASAMENTO*/
+    box-shadow: 0 0 30px rgb(0, 0, 0, .5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: white;
+}
+
+.navegador  a {
+    position:relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500px;
+    margin-left: 40px;
+}
+
+.navegador a::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+    /* transform-origin: right; */
+    transform: scaleX(0);/*ESSA FUNÇÃO FAZE COM QUE O SUBILINHADO TENHA ANIMAÇÃO*/
+    transition: transform .5s;/*ESSA FUNÇÃO FAZE COM QUE O SUBILINHADO TENHA ANIMAÇÃO*/
+
+}
+
+.navegador > a:hover::after{/*ESSA FUNÇÃO FAZE COM QUE O SUBILINHADO TENHA ANIMAÇÃO*/
+    transform-origin: left;
+    transform: scaleX(1);/*ESSA FUNÇÃO FAZE COM QUE O SUBILINHADO TENHA ANIMAÇÃO*/
+    
+}
+
+.navegador .btnLogin-popup {
+    /* width: 130px;
+    height: 50px; */
+    padding: 8px 22px 8px 22px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500px;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navegador .btnLogin-popup:hover {
+    background: white;
+    color: #162938;
+}
+
+.embrulho {/*CAIXA DE EMBASAMENTO*/
+    position: relative;
+    width: 400px;
+    height: 440px;
+    margin-top: 47px;
+    background: transparent;
+    border: 2px solid rgb(255, 255,255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);/*TAG DE EMBASAMENTO*/
+    box-shadow: 0 0 30px rgb(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;/*TAG PARA DEIXAR A BORDA DO (X) ARREDONDADA*/
+    transform: scale(0);
+    transition: transform .35s ease, height .2s ease;
+}
+
+.embrulho.active-popup {
+    transform: scale(1);
+}
+
+.embrulho.active {
+    height: 520px;
+}
+
+.embrulho .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.embrulho .form-box.login{
+    transition: transform .35s ease; 
+    transform: translateX(0); 
+} 
+
+.embrulho.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+
+}
+
+.embrulho .form-box.registrar{
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.embrulho.active .form-box.registrar{
+    transition: transform .35s ease; 
+    transform: translateX(0);
+}
+
+.embrulho .icon-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 45px;
+    height: 45px;
+    background: #162938;
+    font-size: 2em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+
+}
+
+.form-box h2{
+    font-size: 2.5em;
+    font-weight: 790;
+    color: #162938;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1.5px solid #162938;
+    margin: 35px 0px;
+    font-size: 1.3em;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);  
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s; 
+} 
+
+.input-box input:focus~label,
+.input-box input:valid~label
+{/*ANIMAÇÃO DE QUANDO APERTA NO EMAIL E SENHA*/
+    top: -5px;
+  
+} 
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.8em;
+    color: #162938;
+    font-weight: 550;
+    padding: 0px 35px 0px 6px; 
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 57px;
+}
+
+.lembrar-esquecer{
+    font-size: .9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0px 15px;
+    display: flex;
+    justify-content: space-between;/* O USO DESSA TAG É PARA O LEMBRAR DOS DADOS A PARTE DO LINK IR PARA DIREITA */
+}
+
+.lembrar-esquecer label input{
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.lembrar-esquecer a {
+    color: #162938;
+    text-decoration: none;
+}
+
+.lembrar-esquecer a:hover{
+    text-decoration: underline;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+.login-registrar {
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 15px 0px 10px;
+}
+
+.login-registrar p a { 
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-registrar p a:hover {
+    text-decoration: underline;
+}
